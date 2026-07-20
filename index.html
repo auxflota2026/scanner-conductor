@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Escáner - Día del Conductor</title>
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<style>
+
+body{
+    margin:0;
+    background:#f4f6f9;
+    font-family:Arial,Helvetica,sans-serif;
+    text-align:center;
+}
+
+header{
+    background:#1B5E20;
+    color:white;
+    padding:18px;
+    font-size:26px;
+    font-weight:bold;
+}
+
+h2{
+    color:#333;
+}
+
+#reader{
+    width:100%;
+    max-width:500px;
+    margin:25px auto;
+}
+
+#estado{
+    margin-top:20px;
+    font-size:22px;
+    color:#1B5E20;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+🚛 AS TRANSPORTES
+</header>
+
+<h2>Escáner de ingreso</h2>
+
+<div id="reader"></div>
+
+<div id="estado">
+Esperando un código QR...
+</div>
+
+<script>
+
+const scanner = new Html5Qrcode("reader");
+
+scanner.start(
+    {
+        facingMode:"environment"
+    },
+    {
+        fps:10,
+        qrbox:250
+    },
+    function(decodedText){
+
+        document.getElementById("estado").innerHTML =
+        "✅ Código leído";
+
+        scanner.stop();
+
+        window.location.href = decodedText;
+
+    },
+    function(error){}
+
+).catch(function(err){
+
+    document.getElementById("estado").innerHTML =
+    "❌ " + err;
+
+});
+
+</script>
+
+</body>
+</html>
