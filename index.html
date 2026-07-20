@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
@@ -9,38 +10,151 @@
 
 <script src="https://unpkg.com/html5-qrcode"></script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
 
-body{
+*{
     margin:0;
-    background:#f4f6f9;
-    font-family:Arial,Helvetica,sans-serif;
-    text-align:center;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:linear-gradient(
+        180deg,
+        #EEF4FB,
+        #FFFFFF
+    );
+
+    min-height:100vh;
+
 }
 
 header{
-    background:#1B5E20;
-    color:white;
-    padding:18px;
-    font-size:26px;
-    font-weight:bold;
+
+    background:linear-gradient(
+        135deg,
+        #202A72,
+        #2848C7
+    );
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.20);
+
 }
 
-h2{
-    color:#333;
+.logo{
+
+    width:240px;
+
+    max-width:85%;
+
+    display:block;
+
+    margin:auto;
+
+}
+
+header h1{
+
+    color:white;
+
+    font-size:32px;
+
+    margin-top:18px;
+
+    font-weight:700;
+
+}
+
+header p{
+
+    color:#FFD54F;
+
+    font-size:18px;
+
+    margin-top:8px;
+
+}
+
+.card{
+
+    width:92%;
+
+    max-width:600px;
+
+    margin:30px auto;
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:25px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+
+}
+
+.card h2{
+
+    color:#202A72;
+
+    margin-bottom:20px;
+
+    font-size:28px;
+
 }
 
 #reader{
+
     width:100%;
-    max-width:500px;
-    margin:25px auto;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    border:5px solid #F28C28;
+
 }
 
 #estado{
-    margin-top:20px;
-    font-size:22px;
+
+    margin-top:25px;
+
+    background:#E8F5E9;
+
     color:#1B5E20;
-    font-weight:bold;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    font-size:20px;
+
+    font-weight:600;
+
+}
+
+footer{
+
+    margin-top:30px;
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:14px;
+
 }
 
 </style>
@@ -50,16 +164,34 @@ h2{
 <body>
 
 <header>
-🚛 AS TRANSPORTES
+
+    <img src="img/soluciones en movimiento.png" class="logo">
+
+    <h1>Escáner Logístico</h1>
+
+    <p>Día del Conductor 2026</p>
+
 </header>
 
-<h2>Escáner de ingreso</h2>
+<div class="card">
 
-<div id="reader"></div>
+    <h2>Control de ingreso</h2>
 
-<div id="estado">
-Esperando un código QR...
+    <div id="reader"></div>
+
+    <div id="estado">
+
+        🟢 Listo para escanear
+
+    </div>
+
 </div>
+
+<footer>
+
+AS TRANSPORTES © 2026
+
+</footer>
 
 <script>
 
@@ -76,7 +208,7 @@ scanner.start(
     function(decodedText){
 
         document.getElementById("estado").innerHTML =
-        "✅ Código leído";
+        "🟠 Procesando...";
 
         scanner.stop();
 
